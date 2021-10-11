@@ -227,7 +227,16 @@ Interrupt.schedule(roundRobinSwitch, 40, Interrupt.TimerInt);
   public static boolean shouldISwitch(NachosThread current, NachosThread newThread)
   {
      //MP1 preemption code
-     
+if(policy==POLICY_SJF_P){
+if(newThread.timeLeft<current.timeLeft){
+return true;
+}
+}
+else if(policy==POLICY_PRIO_P){
+if(newThread.priority<current.priority){
+return true;
+}
+}
      return false;  //default
   }
 
